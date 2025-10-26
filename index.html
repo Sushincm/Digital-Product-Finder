@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Finder - Discover High-Conversion Opportunities</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-section">
+                    <h1 class="logo-title">💎 Digital Product Finder</h1>
+                    <p class="logo-subtitle">Discover High-Conversion Opportunities from Social Media</p>
+                </div>
+                <div class="user-info-container">
+                    <div class="user-badge">
+                        <span class="badge-icon">👤</span>
+                        <span class="badge-text" id="userEmail">Loading...</span>
+                    </div>
+                    <button id="logoutBtnHeader" class="btn-logout">Sign Out</button>
+                </div>
+            </div>
+            
+            <!-- Last Updated Indicator -->
+            <div class="last-updated-container">
+                <span id="last-updated" class="last-updated-text">⏰ Data last updated: loading...</span>
+            </div>
+            
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalOpportunities">0</div>
+                    <div class="stat-label">Total Opportunities</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="extremelyHighCount">0</div>
+                    <div class="stat-label">🔥 Extremely High</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="seasonalCount">0</div>
+                    <div class="stat-label">Seasonal Trends</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="newThisWeek">0</div>
+                    <div class="stat-label">⭐ New This Week</div>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search questions, products, or niches...">
+            </div>
+            
+            <!-- Quick Filter Pills -->
+            <div class="filter-pills">
+                <button class="filter-pill active" data-filter="all">All</button>
+
+                <button class="filter-pill" data-filter="extremely-high">🔥 Extremely High Conversion</button>
+                <button class="filter-pill" data-filter="very-high">Very High Conversion</button>
+                <button class="filter-pill" data-filter="new">⭐ New &amp; Trending</button>
+                <button class="filter-pill" data-filter="seasonal">Seasonal Q4</button>
+            </div>
+            
+            <!-- Advanced Filters -->
+            <div class="advanced-filters">
+                <select id="platformFilter" class="filter-dropdown">
+                    <option value="all">All Platforms</option>
+                    <option value="Reddit">Reddit</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Pinterest">Pinterest</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Twitter">Twitter</option>
+                </select>
+                <select id="categoryFilter" class="filter-dropdown">
+                    <option value="all">All Categories</option>
+                </select>
+                <select id="conversionFilter" class="filter-dropdown">
+                    <option value="all">All Conversion Levels</option>
+                    <option value="Extremely High">Extremely High</option>
+                    <option value="Very High">Very High</option>
+                    <option value="High">High</option>
+                    <option value="Medium-High">Medium-High</option>
+                    <option value="Medium">Medium</option>
+                </select>
+                <select id="sortBy" class="filter-dropdown">
+                    <option value="conversion">Most Conversion Potential</option>
+                    <option value="newest">Newest First</option>
+                    <option value="platform">Platform</option>
+                    <option value="az">A-Z</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="results-title" id="resultsTitle">All Opportunities</h2>
+                <p class="results-count" id="resultsCount">Showing 0 opportunities</p>
+            </div>
+            
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Loading opportunities from database...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <h3>Failed to Load Data</h3>
+                <p id="errorMessage">Could not connect to database. Please try again later.</p>
+                <button class="btn-primary" onclick="location.reload()">Retry</button>
+            </div>
+            
+            <div class="opportunities-grid" id="opportunitiesGrid">
+                <!-- Cards will be inserted here -->
+            </div>
+            
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No Opportunities Found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Built for Digital Product Creators • Data from Reddit, Instagram, Pinterest, Facebook, Twitter</p>
+            <p class="footer-date">Last updated: October 2025</p>
+        </div>
+    </footer>
+
+    <!-- Login Screen -->
+    <div class="auth-screen" id="loginScreen" style="display: none;">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-icon">💎</div>
+                    <h1 class="auth-title" id="authFormTitle">Digital Product Finder</h1>
+                    <p class="auth-subtitle" id="authFormSubtitle">Sign in to access exclusive opportunities</p>
+                </div>
+                
+                <div class="auth-body">
+                    <!-- Login Form -->
+                    <div id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail" class="form-label">Email Address</label>
+                            <input type="email" id="loginEmail" class="auth-input" placeholder="your@email.com" autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" id="loginPassword" class="auth-input" placeholder="Enter your password" autocomplete="current-password">
+                        </div>
+                        
+                        <button id="loginBtn" class="btn-auth-primary">
+                            <span class="btn-text">Sign In</span>
+                            <span class="btn-spinner" style="display: none;">⏳</span>
+                        </button>
+                        
+                        <p class="auth-toggle-text">Don't have an account? <a href="#" id="showSignupLink" class="auth-link">Create one</a></p>
+                    </div>
+                    
+                    <!-- Signup Form -->
+                    <div id="signupForm" style="display: none;">
+                        <div class="form-group">
+                            <label for="signupEmail" class="form-label">Email Address (Use your Gumroad purchase email)</label>
+                            <input type="email" id="signupEmail" class="auth-input" placeholder="your@email.com" autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signupPassword" class="form-label">Create Password</label>
+                            <input type="password" id="signupPassword" class="auth-input" placeholder="Create a strong password" autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" id="signupConfirmPassword" class="auth-input" placeholder="Confirm your password" autocomplete="new-password">
+                        </div>
+                        
+                        <button id="signupBtn" class="btn-auth-primary">
+                            <span class="btn-text">Create Account</span>
+                            <span class="btn-spinner" style="display: none;">⏳</span>
+                        </button>
+                        
+                        <p class="auth-toggle-text">Already have an account? <a href="#" id="showLoginLink" class="auth-link">Sign in</a></p>
+                    </div>
+                    
+                    <div id="authMessage" class="auth-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Access Denied Screen -->
+    <div class="auth-screen" id="accessDeniedScreen" style="display: none;">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-icon">🔒</div>
+                    <h1 class="auth-title">Access Denied</h1>
+                    <p class="auth-subtitle">Your email is not authorized to access this platform.</p>
+                </div>
+                
+                <div class="auth-body">
+                    <p class="access-denied-text">Please contact support to request access.</p>
+                    <p class="access-denied-email" id="deniedEmail"></p>
+                    
+                    <button id="logoutBtn" class="btn-auth-secondary">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Expanded Card Details -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.7/dist/umd/supabase.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
