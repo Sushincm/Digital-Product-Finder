@@ -1,6 +1,6 @@
 // Supabase Configuration
 const SUPABASE_URL = 'https://mmcubamglborvoruwaaz.supabase.co';
-const SUPABASE_ANON_KEY = 'your-supabase-anon-key-here';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tY3ViYW1nbGJvcnZvcnV3YWF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0MDQ5MjIsImV4cCI6MjA3Njk4MDkyMn0.VG-DuqkqstNkYtCgMj0TnwoSawmLGOx1qT218-Rz_SM';
 const ADMIN_EMAIL = 'sushinofficial@gmail.com';
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
